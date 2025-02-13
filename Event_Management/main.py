@@ -19,8 +19,17 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 app = FastAPI()
 
-models.Base.metadata.create_all(bind=engine)
+def initialize_db():
+    models.Base.metadata.create_all(bind=engine)
 
+@app.get("/")
+def read_root():
+    return {"message": "FastAPI is running on Render!"}
+
+if __name__ == "__main__":
+    initialize_db() 
+    port = int(os.environ.get("PORT", 8000))  
+    uvicorn.run(app, host="0.0.0.0", port=port)
 # Dependency to get a database session
 def get_db():
     db = SessionLocal()
