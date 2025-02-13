@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
 import csv
 from io import StringIO
-
+import os
 import models
 import schemas
 from schemas import EventCreate, EventUpdate, AttendeeCreate, AttendeeResponse, EventResponse, Token
